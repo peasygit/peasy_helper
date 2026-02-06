@@ -1,0 +1,669 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Peasy - Household HR</title>
+    <style vid="5">
+        :root {
+            
+            --primary: #DB0011;
+            --primary-hover: #B2000E;
+            --bg-body: #0D0D0D; 
+            
+            
+            --bg-app: #FFFFFF;
+            --bg-surface: #F5F6FC; 
+            --bg-surface-hover: #EBEFF8;
+            
+            --text-main: #000000; 
+            --text-secondary: #6E727D; 
+            --text-tertiary: #989CA5;
+            
+            --border-subtle: #EDEEF2;
+            --border-focus: #DB0011; 
+            
+            
+            --radius-lg: 24px; 
+            --radius-md: 16px; 
+            --radius-sm: 12px; 
+            --radius-pill: 999px;
+            
+            
+            --space-xs: 8px;
+            --space-sm: 12px;
+            --space-md: 20px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 80px;
+            
+            
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-weight-regular: 400;
+            --font-weight-medium: 500;
+            --font-weight-bold: 600;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-app);
+            color: var(--text-main);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+        }
+
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .gap-sm { gap: var(--space-sm); }
+        .gap-md { gap: var(--space-md); }
+        .gap-lg { gap: var(--space-lg); }
+
+        .text-h1 {
+            font-size: 56px;
+            font-weight: var(--font-weight-bold);
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            color: var(--text-main);
+        }
+
+        .text-h2 {
+            font-size: 32px;
+            font-weight: var(--font-weight-bold);
+            letter-spacing: -0.01em;
+        }
+
+        .text-h3 {
+            font-size: 20px;
+            font-weight: var(--font-weight-bold);
+        }
+
+        .text-body {
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+
+        .text-small {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: var(--font-weight-medium);
+        }
+
+        .text-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-weight: var(--font-weight-medium);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 56px; 
+            padding: 0 32px;
+            border-radius: var(--radius-pill); 
+            font-size: 18px;
+            font-weight: var(--font-weight-bold);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--border-subtle);
+            color: var(--text-main);
+        }
+        .btn-secondary:hover {
+            border-color: var(--text-main);
+        }
+
+        .btn-sm {
+            height: 40px;
+            font-size: 14px;
+            padding: 0 20px;
+        }
+
+        
+        .input-group {
+            margin-bottom: var(--space-md);
+        }
+        
+        .input-label {
+            display: block;
+            margin-bottom: var(--space-xs);
+            color: var(--text-main);
+            font-weight: var(--font-weight-bold);
+            font-size: 14px;
+        }
+
+        .input-surface {
+            background-color: var(--bg-surface);
+            border-radius: var(--radius-md); 
+            padding: 16px 20px;
+            width: 100%;
+            border: 1px solid transparent;
+            font-family: inherit;
+            font-size: 16px;
+            color: var(--text-main);
+            transition: background-color 0.2s;
+            outline: none;
+        }
+
+        .input-surface:focus {
+            background-color: white;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(219, 0, 17, 0.1);
+        }
+
+        .select-surface {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2.5 4.5L6 8L9.5 4.5' stroke='%236E727D' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 20px center;
+        }
+
+        
+        .card {
+            background: white;
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            position: relative;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .card:hover {
+            border-color: #D1D5DB;
+        }
+
+        .card-flat {
+            background: var(--bg-surface);
+            border: none;
+        }
+
+        
+        .header {
+            padding: var(--space-md) 0;
+            border-bottom: 1px solid var(--border-subtle);
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+
+        .nav-logo {
+            font-weight: 800;
+            font-size: 24px;
+            color: var(--text-main);
+            letter-spacing: -0.03em;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: var(--font-weight-medium);
+            margin-left: var(--space-lg);
+            transition: color 0.2s;
+        }
+        .nav-link:hover { color: var(--text-main); }
+
+        
+        .hero {
+            padding: var(--space-2xl) 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-2xl);
+            align-items: center;
+        }
+
+        .hero-image-frame {
+            background: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            position: relative;
+        }
+        
+        
+        .hero-image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: linear-gradient(to top, rgba(0,0,0,0.05), transparent);
+        }
+
+        
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-md);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .icon-box {
+            width: 48px;
+            height: 48px;
+            background: var(--bg-surface);
+            border-radius: var(--radius-sm); 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-md);
+            color: var(--primary);
+        }
+
+        
+        .process-section {
+            padding: var(--space-2xl) 0;
+            background: var(--bg-surface);
+            margin: var(--space-2xl) 0;
+            border-radius: var(--radius-lg);
+        }
+
+        .step-track {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-md);
+            position: relative;
+        }
+
+        .step-item {
+            position: relative;
+            padding-top: var(--space-lg);
+        }
+
+        .step-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #E5E7EB;
+        }
+        
+        .step-item.active .step-line {
+            background: var(--primary);
+        }
+
+        .step-number {
+            font-size: 32px;
+            font-weight: var(--font-weight-bold);
+            color: var(--border-subtle);
+            margin-bottom: var(--space-sm);
+            line-height: 1;
+        }
+        .step-item.active .step-number {
+            color: var(--primary);
+        }
+
+        
+        .dashboard-layout {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: var(--space-lg);
+            padding: var(--space-xl) 0;
+            min-height: 100vh;
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xs);
+        }
+
+        .sidebar-item {
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: var(--font-weight-medium);
+        }
+        
+        .sidebar-item.active {
+            background: var(--bg-surface);
+            color: var(--primary);
+        }
+
+        .helper-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--space-md);
+        }
+
+        
+        .helper-card {
+            background: white;
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+
+        .match-badge {
+            align-self: flex-start;
+            padding: 4px 12px;
+            background: #FFF1F2; 
+            color: var(--primary);
+            border-radius: var(--radius-pill);
+            font-size: 13px;
+            font-weight: var(--font-weight-bold);
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 8px;
+            background: var(--bg-surface);
+            border-radius: 6px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-right: 4px;
+        }
+
+        
+        .stepper-layout {
+            max-width: 600px;
+            margin: var(--space-2xl) auto;
+        }
+
+        .form-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--space-xl);
+        }
+        
+        .step-dot {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: var(--font-weight-medium);
+            color: var(--text-tertiary);
+        }
+        .step-dot.active {
+            color: var(--text-main);
+        }
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border-subtle);
+        }
+        .step-dot.active .dot {
+            background: var(--primary);
+        }
+
+        
+        .action-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-top: var(--space-xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        
+        .icon { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 2; }
+    </style>
+</head>
+<body vid="6">
+
+    
+    <header class="header" vid="7">
+        <div class="container flex justify-between items-center" vid="8">
+            <div class="nav-logo" vid="9">Peasy</div>
+            <nav class="flex" vid="10">
+                <a href="#" class="nav-link" vid="11">Find Helpers</a>
+                <a href="#" class="nav-link" vid="12">For Helpers</a>
+                <a href="#" class="nav-link" vid="13">Process</a>
+                <a href="#" class="nav-link" style="color: var(--primary)" vid="14">Log In</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container" vid="15">
+        
+        
+        <section class="hero" vid="16">
+            <div vid="17">
+                <h1 class="text-h1" style="margin-bottom: var(--space-md);" vid="18">Your household HR,<br vid="19">cared for people<br vid="20">and home.</h1>
+                <p class="text-body" style="font-size: 20px; margin-bottom: var(--space-lg); max-width: 480px;" vid="21">
+                    Fair matching, full HR support, and zero fees for helpers. The professional way to manage domestic employment.
+                </p>
+                <div class="flex gap-md" vid="22">
+                    <button class="btn btn-primary" vid="23">Start 3-min questionnaire</button>
+                    <button class="btn btn-secondary" vid="24">See how it works</button>
+                </div>
+            </div>
+            <div class="hero-image-frame" vid="25">
+                
+                <div style="width: 100%; height: 100%; background: #E5E7EB; display: flex; align-items: center; justify-content: center; color: #9CA3AF;" vid="26">
+                    Professional Family Portrait
+                </div>
+                <div class="hero-image-overlay" vid="27"></div>
+            </div>
+        </section>
+
+        
+        <section class="value-grid" vid="28">
+            <div class="card card-flat" vid="29">
+                <div class="icon-box" vid="30">
+                    <svg class="icon" viewBox="0 0 24 24" vid="31"><path d="M3 21h18M5 21V7l8-4 8 4v14M9 10a2 2 0 11-4 0 2 2 0 014 0zM9 10a2 2 0 11-4 0 2 2 0 014 0z" vid="32"></path></svg>
+                </div>
+                <h3 class="text-h3" style="margin-bottom: 8px;" vid="33">Household HR, not agency</h3>
+                <p class="text-body" vid="34">We handle contracts, visas, and payroll with banking-grade compliance.</p>
+            </div>
+            <div class="card card-flat" vid="35">
+                <div class="icon-box" vid="36">
+                    <svg class="icon" viewBox="0 0 24 24" vid="37"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" vid="38"></path></svg>
+                </div>
+                <h3 class="text-h3" style="margin-bottom: 8px;" vid="39">Fair &amp; Safe</h3>
+                <p class="text-body" vid="40">Ethical standards that protect both families and domestic helpers.</p>
+            </div>
+            <div class="card card-flat" vid="41">
+                <div class="icon-box" vid="42">
+                    <svg class="icon" viewBox="0 0 24 24" vid="43"><path d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" vid="44"></path></svg>
+                </div>
+                <h3 class="text-h3" style="margin-bottom: 8px;" vid="45">Smart Matching</h3>
+                <p class="text-body" vid="46">Algorithms that match based on personality, skills, and lifestyle needs.</p>
+            </div>
+        </section>
+
+        
+        <div class="process-section" vid="47">
+            <div class="container" vid="48">
+                <h2 class="text-h2" style="margin-bottom: var(--space-xl)" vid="49">How it works</h2>
+                <div class="step-track" vid="50">
+                    <div class="step-item active" vid="51">
+                        <div class="step-line" vid="52"></div>
+                        <div class="step-number" vid="53">01</div>
+                        <h4 class="text-h3" vid="54">Tell needs</h4>
+                        <p class="text-small" style="margin-top: 4px" vid="55">3-minute survey</p>
+                    </div>
+                    <div class="step-item" vid="56">
+                        <div class="step-line" vid="57"></div>
+                        <div class="step-number" vid="58">02</div>
+                        <h4 class="text-h3" vid="59">We shortlist</h4>
+                        <p class="text-small" style="margin-top: 4px" vid="60">Curated profiles</p>
+                    </div>
+                    <div class="step-item" vid="61">
+                        <div class="step-line" vid="62"></div>
+                        <div class="step-number" vid="63">03</div>
+                        <h4 class="text-h3" vid="64">Interview</h4>
+                        <p class="text-small" style="margin-top: 4px" vid="65">Meet &amp; choose</p>
+                    </div>
+                    <div class="step-item" vid="66">
+                        <div class="step-line" vid="67"></div>
+                        <div class="step-number" vid="68">04</div>
+                        <h4 class="text-h3" vid="69">Support</h4>
+                        <p class="text-small" style="margin-top: 4px" vid="70">Docs &amp; onboarding</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section class="stepper-layout" vid="71">
+            <h2 class="text-h2" style="text-align: center; margin-bottom: var(--space-lg);" vid="72">Setup your profile</h2>
+            
+            <div class="form-steps" vid="73">
+                <div class="step-dot active" vid="74"><span class="dot" vid="75"></span> Basics</div>
+                <div class="step-dot" vid="76"><span class="dot" vid="77"></span> Duties</div>
+                <div class="step-dot" vid="78"><span class="dot" vid="79"></span> Preferences</div>
+                <div class="step-dot" vid="80"><span class="dot" vid="81"></span> Review</div>
+            </div>
+
+            <div class="card" vid="82">
+                <div class="input-group" vid="83">
+                    <label class="input-label" vid="84">Family Size</label>
+                    <select class="input-surface select-surface" vid="85">
+                        <option vid="86">2 Adults, 1 Child</option>
+                        <option vid="87">2 Adults, 2 Children</option>
+                    </select>
+                </div>
+
+                <div class="input-group" vid="88">
+                    <label class="input-label" vid="89">Primary Duties</label>
+                    <div class="flex gap-sm" style="flex-wrap: wrap;" vid="90">
+                        <label class="input-surface" style="width: auto; display: flex; align-items: center; gap: 8px; cursor: pointer;" vid="91">
+                            <input type="checkbox" checked="" style="accent-color: var(--primary);" vid="92"> Childcare
+                        </label>
+                        <label class="input-surface" style="width: auto; display: flex; align-items: center; gap: 8px; cursor: pointer;" vid="93">
+                            <input type="checkbox" style="accent-color: var(--primary);" vid="94"> Elderly Care
+                        </label>
+                        <label class="input-surface" style="width: auto; display: flex; align-items: center; gap: 8px; cursor: pointer;" vid="95">
+                            <input type="checkbox" style="accent-color: var(--primary);" vid="96"> Cooking
+                        </label>
+                    </div>
+                </div>
+
+                <div class="input-group" vid="97">
+                    <label class="input-label" vid="98">Start Date</label>
+                    <input type="date" class="input-surface" vid="99">
+                </div>
+
+                <div class="action-bar" vid="100">
+                    <button class="btn btn-secondary btn-sm" style="border: none;" vid="101">Back</button>
+                    <button class="btn btn-primary" vid="102">Next Step</button>
+                </div>
+            </div>
+        </section>
+
+        
+        <div style="background: var(--bg-surface); margin-top: 100px; padding-bottom: 50px;" vid="103">
+            <div class="container dashboard-layout" vid="104">
+                
+                <aside class="sidebar-nav" vid="105">
+                    <div class="sidebar-item active" vid="106">Matches</div>
+                    <div class="sidebar-item" vid="107">Shortlist</div>
+                    <div class="sidebar-item" vid="108">Interviews</div>
+                    <div class="sidebar-item" vid="109">Contracts</div>
+                    <div style="height: 1px; background: #E5E7EB; margin: 12px 0;" vid="110"></div>
+                    <div class="sidebar-item" vid="111">Settings</div>
+                </aside>
+
+                
+                <div class="content" vid="112">
+                    <div class="flex justify-between items-center" style="margin-bottom: var(--space-md);" vid="113">
+                        <h2 class="text-h2" vid="114">Top Matches</h2>
+                        <div class="flex gap-sm" vid="115">
+                            <button class="btn btn-secondary btn-sm" style="background: white;" vid="116">Filter</button>
+                            <button class="btn btn-secondary btn-sm" style="background: white;" vid="117">Sort</button>
+                        </div>
+                    </div>
+
+                    <div class="helper-grid" vid="118">
+                        
+                        <div class="helper-card" vid="119">
+                            <div class="flex justify-between" vid="120">
+                                <div style="width: 60px; height: 60px; background: #F3F4F6; border-radius: 50%;" vid="121"></div>
+                                <span class="match-badge" vid="122">98% Match</span>
+                            </div>
+                            <div vid="123">
+                                <h3 class="text-h3" vid="124">Maria S.</h3>
+                                <p class="text-small" vid="125">Philippines • 8 Years Exp</p>
+                            </div>
+                            <div style="margin-top: auto;" vid="126">
+                                <div style="margin-bottom: 12px;" vid="127">
+                                    <span class="tag" vid="128">Infant Care</span>
+                                    <span class="tag" vid="129">Cooking</span>
+                                </div>
+                                <button class="btn btn-secondary btn-sm" style="width: 100%;" vid="130">View Profile</button>
+                            </div>
+                        </div>
+
+                         
+                         <div class="helper-card" vid="131">
+                            <div class="flex justify-between" vid="132">
+                                <div style="width: 60px; height: 60px; background: #F3F4F6; border-radius: 50%;" vid="133"></div>
+                                <span class="match-badge" vid="134">87% Match</span>
+                            </div>
+                            <div vid="135">
+                                <h3 class="text-h3" vid="136">Elena R.</h3>
+                                <p class="text-small" vid="137">Philippines • 5 Years Exp</p>
+                            </div>
+                            <div style="margin-top: auto;" vid="138">
+                                <div style="margin-bottom: 12px;" vid="139">
+                                    <span class="tag" vid="140">Elderly</span>
+                                    <span class="tag" vid="141">Pets</span>
+                                </div>
+                                <button class="btn btn-secondary btn-sm" style="width: 100%;" vid="142">View Profile</button>
+                            </div>
+                        </div>
+
+                         
+                         <div class="helper-card" vid="143">
+                            <div class="flex justify-between" vid="144">
+                                <div style="width: 60px; height: 60px; background: #F3F4F6; border-radius: 50%;" vid="145"></div>
+                                <span class="match-badge" vid="146">82% Match</span>
+                            </div>
+                            <div vid="147">
+                                <h3 class="text-h3" vid="148">Siti N.</h3>
+                                <p class="text-small" vid="149">Indonesia • 4 Years Exp</p>
+                            </div>
+                            <div style="margin-top: auto;" vid="150">
+                                <div style="margin-bottom: 12px;" vid="151">
+                                    <span class="tag" vid="152">Cleaning</span>
+                                    <span class="tag" vid="153">Mandarin</span>
+                                </div>
+                                <button class="btn btn-secondary btn-sm" style="width: 100%;" vid="154">View Profile</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+</body></html>
